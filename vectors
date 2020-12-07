@@ -1,0 +1,82 @@
+#include<vector>
+#include<algorithms>
+
+//C++ STL
+
+bool f(int x, int y)
+{
+    return x > y;
+}
+
+vector<int> A = {11,2,3,14};
+
+cout << A[1] << endl;
+
+sort(A.begin(), A.end());  //O(NlogN) if not using C++, then would use merge sort, which takes a lot more time.
+
+// 2,3,11,14
+
+//Use binary search to find if element is present in logN time.
+
+bool present = binary_search(A.begin(), A.end(), 3); // true -- element is present
+present = binary_search(A.begin(), A.end(), 4); // false -- element is not present
+
+A.push_back(100);
+present = binary_search(A.begin(), A.end(), 100);
+
+A.push_back(100);
+A.push_back(100);
+A.push_back(100);
+A.push_back(100);
+A.push_back(123);
+
+vector<int>::iterator it = lower_bound(A.begin(), A.end(), 100) // >=
+vector<int>::iterator it2 = upper_bound(A.begin(), A.end(), 100) // >
+
+// can do instead:
+// auto it2 = upper_bound(A.begin(), A.end(), 100) 
+
+cout << *it << " " << *it2 << endl;
+cout << it2 - it << endl; //5
+
+// Can get count of a number by taking lower_bound - upper_bound 
+
+// Use comparative function f to sort in reverse order
+
+// Print vector
+
+sort(A.begin(), A.end(), f);
+vector<int>::iterator it3;
+
+for (it3 = A.begin(); it3 != A.end(); it3++)
+{
+  cout << it3 << " ";
+}
+
+// can do instead:
+
+for (int x: A) 
+{
+    cout << x << " ";
+}
+
+// if want to iterate over vector and simultaneously update values, use & to iterate by reference
+
+for (int &x: A)
+{
+    x++ // will be applied to vector 
+    cout << x << " ";
+}
+
+// problem is that when items are added, they have to be re-sorted (taking NlogN time), in order for lower_bound and upper_bound to work
+
+
+
+
+
+
+
+
+
+
+

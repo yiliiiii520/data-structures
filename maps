@@ -1,0 +1,19 @@
+#include <map>
+void mapDemo()
+{
+  map<int, int> A;
+  A[1] = 100; // takes logN time 
+  A[2] = -1; // can also find/delete a key in map in logN time e.g. A.find(key) and A.erase(key)
+  A[3] = 200;
+  A[100000] = 1;
+  
+  map<char, int> cnt;
+  string x = "yi li";
+  
+  for (char c : x){
+    cnt[c]++;
+  }
+  
+  cout << cnt['i'] << " " << cnt['z'] << endl; // can retrieve in logN time
+  
+  

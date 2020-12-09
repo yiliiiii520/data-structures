@@ -1,0 +1,49 @@
+// problem: given a class A, we want to know at any time, how many objects of A live in the "heap" memory
+
+#include <iostream>
+using namespace std;
+
+class A{
+public:
+  static int x;
+  A(){
+
+  }
+  ~A(){ 
+
+  }
+  
+  // operator overloading for new and delete
+  
+  void* operator new(size_t sz){
+    x++;
+  } 
+  
+};
+
+int A::x = 0;
+
+int main()
+{
+  A a, b; // local variables stored in --> stack 
+  A c, d, e;
+  
+// dynamic object created at run-time and created in heap
+
+// cast pointer to A*
+
+// A* ptr = (A*)malloc(sizeof(A)); // malloc allocates memory, but does not call constructor, C style way of allocating memory
+
+// allocates memory and calls constructor as well
+
+  A* ptr = new A;
+
+// free(ptr); // C-style, deallocates memory, but does not call teh destructor!
+
+// can solve this by using delete instead of free
+
+  delete ptr;
+
+  cout << A::x << endl;
+
+}
